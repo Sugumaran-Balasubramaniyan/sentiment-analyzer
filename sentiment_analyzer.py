@@ -5,22 +5,27 @@ from sklearn.metrics import confusion_matrix
 import numpy as np
 import itertools
 import matplotlib.pyplot as plt
+import requests
 
 st.title("Sentiment Analyzer Based On Text Analysis ")
 st.subheader("Paras Patidar - MLAIT")
 st.write('\n\n')
 
-@st.cache
+@st.cache_data # Streamlit cache decorator
 def get_all_data():
-    root = "https://github.com/Sugumaran-Balasubramaniyan/sentiment-analyzer/blob/92005ab3cd943138bca0ad87f1ba1aa12aa75043/Datasets"
-    with open(root + "imdb_labelled.txt", "r") as text_file:
-        data = text_file.read().split('\n')
-         
-    with open(root + "amazon_cells_labelled.txt", "r") as text_file:
-        data += text_file.read().split('\n')
-
-    with open(root + "yelp_labelled.txt", "r") as text_file:
-        data += text_file.read().split('\n')
+    data = []
+    urls = [
+        "https://raw.githubusercontent.com/Sugumaran-Balasubramaniyan/sentiment-analyzer/main/Datasets/imdb_labelled.txt",
+        "https://raw.githubusercontent.com/Sugumaran-Balasubramaniyan/sentiment-analyzer/main/Datasets/amazon_cells_labelled.txt"
+    ]
+    for url in urls:
+        try:
+            response = requests.get(url)
+            response.raise_for_status()  # Raise HTTPError for bad responses (4xx or 5xx)
+            data.extend(response.text.split('\n'))
+        except requests.exceptions.RequestException as e:
+            st.error(f"Error fetching data from {url}: {e}")
+            return [] # or handle the error appropriately.
 
     return data
 
@@ -42,7 +47,7 @@ def preprocessing_data(data):
 if st.checkbox('Show PreProcessed Dataset'):
     st.write(preprocessing_data(all_data))
 
-@st.cache
+@st.cache_data
 def split_data(data):
     total = len(data)
     training_ratio = 0.75
@@ -56,7 +61,7 @@ def split_data(data):
             evaluation_data.append(data[indice])
 
     return training_data, evaluation_data
-@st.cache
+@st.cache_data
 def preprocessing_step():
     data = get_all_data()
     processing_data = preprocessing_data(data)
@@ -70,7 +75,7 @@ def training_step(data,vectorizer):
     return BernoulliNB().fit(training_text,training_result)
 
 training_data,evaluation_data = preprocessing_step()
-vectorizer = CountVectorizer(binary='true')
+vectorizer = CountVectorizer(binary=True)
 classifier = training_step(training_data,vectorizer)
 
 def analyse_text(classifier,vectorizer,text):
