@@ -8,7 +8,7 @@ import matplotlib.pyplot as plt
 import requests
 
 st.title("Sentiment Analyzer Based On Text Analysis ")
-st.subheader("Paras Patidar - MLAIT")
+st.write("This is a simple sentiment analyzer based on text analysis. It uses a dataset of reviews and their sentiment (positive or negative) to train a Naive Bayes classifier. The classifier is then used to predict the sentiment of a given review.")
 st.write('\n\n')
 
 @st.cache_data # Streamlit cache decorator
