@@ -1,9 +1,10 @@
 # Sentiment-Analyzer-Tool
- It analyze the sentiment of the user, whether it is postive or negative.
- 
- It uses [streamlit](https://streamlit.io) library for creating this sentiment analyzer tool on a platform like web.
- 
- <img src="https://github.com/patidarparas13/Sentiment-Analyzer-Tool/blob/master/image.png">
+
+It analyze the sentiment of the user, whether it is postive or negative.
+
+It uses [streamlit](https://streamlit.io) library for creating this sentiment analyzer tool on a platform like web.
+
+ <img src="https://github.com/Sugumaran-Balasubramaniyan/sentiment-analyzer/blob/main/image.png">
  
  ## Requirement
  1. Scikit-Learn
