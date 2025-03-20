@@ -16,20 +16,19 @@ It leverages the [Streamlit](https://streamlit.io) library to create an interact
 
 To get started, download the repository, install the required libraries, and execute the following command:
 
-````bash
- <img src="https://github.com/Sugumaran-Balasubramaniyan/sentiment-analyzer/blob/main/image.png">
+## Requirement
 
- ## Requirement
- 1. Scikit-Learn
- 2. Python 3
- 3. Streamlit
- 4. Numpy
- 5. Matplotlib
+1.  Scikit-Learn
+2.  Python 3
+3.  Streamlit
+4.  Numpy
+5.  Matplotlib
 
 Just Download the repository, install the necessary libraries and then run
- ```python
+
+```python
 streamlit run file_name.py
-````
+```
 
 in your command line and then you can interact with it in your browser.
 
